@@ -1,0 +1,39 @@
+name: sub2api-risk-benchmark
+
+services:
+  postgres:
+    image: postgres:18.1-alpine3.23
+    container_name: sub2api-risk-postgres
+    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
+    ports:
+      - "127.0.0.1:15432:5432"
+    environment:
+      POSTGRES_USER: sub2api
+      POSTGRES_PASSWORD: risk-benchmark-password
+      POSTGRES_DB: sub2api
+      PGDATA: /var/lib/postgresql/data
+      TZ: Asia/Shanghai
+    volumes:
+      - risk_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sub2api -d sub2api"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  redis:
+    image: redis:8.4-alpine
+    container_name: sub2api-risk-redis
+    ports:
+      - "127.0.0.1:16379:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    environment:
+      TZ: Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+volumes:
+  risk_postgres_data:
