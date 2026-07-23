@@ -440,6 +440,9 @@ export default {
         oauthPassthrough: 'Auto passthrough (auth only)',
         oauthPassthroughDesc:
           'When enabled, this OpenAI account uses automatic passthrough: the gateway forwards request/response as-is and only swaps auth, while keeping billing/concurrency/audit and necessary safety filtering.',
+        disableDefaultCodexInstructions: 'Disable default Codex Instructions injection',
+        disableDefaultCodexInstructionsDesc:
+          'When enabled, Sub2API does not inject its embedded Codex Base Prompt when instructions are missing. Client-provided instructions and system guidance are preserved.',
         longContextBilling: 'API long-context pricing',
         longContextBillingDesc:
           'Disabled by default. Enable only when this account\'s upstream charges OpenAI API long-context rates above the model threshold.',

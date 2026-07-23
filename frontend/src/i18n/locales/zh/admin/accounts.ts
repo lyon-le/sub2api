@@ -507,6 +507,9 @@ export default {
         oauthPassthrough: '自动透传（仅替换认证）',
         oauthPassthroughDesc:
           '开启后，该 OpenAI 账号将自动透传请求与响应，仅替换认证并保留计费/并发/审计及必要安全过滤；如遇兼容性问题可随时关闭回滚。',
+        disableDefaultCodexInstructions: '禁用默认 Codex Instructions 注入',
+        disableDefaultCodexInstructionsDesc:
+          '开启后，请求未提供 instructions 时不再注入 Sub2API 内置的 Codex Base Prompt；客户端自行提供的 instructions 和 system 指令不受影响。',
         longContextBilling: 'API 长上下文计费',
         longContextBillingDesc: '默认关闭。仅当该账号的上游会按模型阈值收取 OpenAI API 长上下文费率时开启。',
         responsesWebsocketsV2: 'Responses WebSocket v2',
